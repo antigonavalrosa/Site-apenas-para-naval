@@ -1,0 +1,38 @@
+<html lang="pt-br">
+<head>
+    <title>Login com Vários Usuários</title>
+</head>
+<body>
+    <script>
+        const USUARIOS = ["matheus", "admin", "joao"]; // lista de logins oficiais
+        const SENHAS = ["123", "admin123", "joao456"]; // lista de senhas oficiais
+
+        let tentativas = 0;
+        const MAX_TENTATIVAS = 2;
+        let acesso = false;
+
+        while(tentativas < MAX_TENTATIVAS && acesso == false){
+            let login = prompt("Digite o login");
+            let senha = prompt("Digite a senha");
+
+            let posicao = USUARIOS.indexOf(login); // procura o login
+
+            // Se achou o login E a senha bate
+            if(posicao!= -1 && SENHAS[posicao] == senha){
+                document.write("Acesso permitido! Bem-vindo, " + login);
+                acesso = true; // para o while
+            } else {
+                tentativas++;
+                if(tentativas < MAX_TENTATIVAS){
+                    alert("Login ou senha incorretos! Tentativa " + tentativas + " de 3");
+                }
+            }
+        }
+
+        // Se saiu do while e não teve acesso = bloqueou
+        if(acesso == false){
+            document.write(" Site bloqueado! Muitas tentativas erradas.");
+        }
+    </script>
+</body>
+</html>
